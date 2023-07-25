@@ -22,3 +22,8 @@
  
 5. With an intuitive interface, this project offers efficient storage and retrieval of
    website information, enhancing user convenience and security.
+   
+
+Note : please create a seperate folder and then place the soucre code of this project in it , because 
+       after compilation the " credentials.txt " file will be created.
+       And it will become easier for you to manage the text file.
