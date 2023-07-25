@@ -167,7 +167,7 @@ class WebsiteCredentialManager
 					else
 					{
 						boolean foundAndDeleted = deleteCredentials(nameToDelete);
-						if(foundAndDeleted)
+						if(foundAndDeleted == true)
 						{
 							notify.setText("Successfully deleted.");
 						}
@@ -226,9 +226,9 @@ class WebsiteCredentialManager
                 			 }
                				 writer.flush();
             			} 
-	    			catch (IOException e)
+	    			catch (IOException obj)
 	   			{
-					System.out.println("Exception occured : "+e);
+					System.out.println("Exception occured : "+obj);
             			}
         		}
 
@@ -306,7 +306,7 @@ class WebsiteCredentialManager
 									break;
 								}
 							}
-							if (!found)
+							if (found == false)
 							{
 								found1.setText("No such website added.");
 							}
@@ -333,9 +333,9 @@ class WebsiteCredentialManager
 		{
             		Desktop.getDesktop().open(new File("credentials.txt"));
         	} 
-		catch (IOException e)
+		catch (IOException obj)
 		{
-            		System.out.println("Exception occured : "+e);
+            		System.out.println("Exception occured : "+obj);
         	}
     	}
 
@@ -414,9 +414,9 @@ class WebsiteCredentialManager
            	 	writer.write("\n");
             		writer.flush();
         	} 
-		catch (IOException e) 
+		catch (IOException obj) 
 		{
-			System.out.println("Exception occured : "+e);
+			System.out.println("Exception occured : "+obj);
         	}
     	}
 
