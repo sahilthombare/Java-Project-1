@@ -1,6 +1,6 @@
 # Java-Project-1
-This repo contains the project made in  java programming language -> " Website Credentials Manager "
 
+" Website Credentials Manager "
 
 1. The "Website Credentials Manager" is a Java project that utilizes the concepts of Java Swing and
    file  handling to store  and manage website information, including the website name , username ,
