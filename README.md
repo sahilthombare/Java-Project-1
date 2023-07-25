@@ -24,6 +24,8 @@
    website information, enhancing user convenience and security.
    
 
-Note : please create a seperate folder and then place the soucre code of this project in it , because 
+Note : Please create a seperate folder and then place the soucre code of this project in it , because 
        after compilation the " credentials.txt " file will be created.
        And it will become easier for you to manage the text file.
+
+       For better Ui dont expand the window , let it reamin as it is. 
