@@ -121,64 +121,64 @@ class WebsiteCredentialManager
 
 	private void deleteweb()        
 	{
-			JFrame dobj=new JFrame("Delete a Website");
-			JLabel dlobj=new JLabel("Enter the Website to Delete");
-			JTextField ddelete=new JTextField();
-			JButton ddboj=new JButton("DELETE");
-			JButton close=new JButton("CLOSE");
+		JFrame dobj=new JFrame("Delete a Website");
+		JLabel dlobj=new JLabel("Enter the Website to Delete");
+		JTextField ddelete=new JTextField();
+		JButton ddboj=new JButton("DELETE");
+		JButton close=new JButton("CLOSE");
 			
-			JTextArea notify=new JTextArea();
+		JTextArea notify=new JTextArea();
 			
-			dlobj.setBounds(20,50,170,30);
-			ddelete.setBounds(200,50,170,30);
-			ddboj.setBounds(150,120,80,30);
-			notify.setBounds(100,190,200,50);
-			close.setBounds(150,275,80,30);
+		dlobj.setBounds(20,50,170,30);
+		ddelete.setBounds(200,50,170,30);
+		ddboj.setBounds(150,120,80,30);
+		notify.setBounds(100,190,200,50);
+		close.setBounds(150,275,80,30);
 			
-			dobj.add(dlobj);
-			dobj.add(ddelete);
-			dobj.add(ddboj);
-			dobj.add(notify);
-			dobj.add(close);
-			dobj.setSize(400,370);
-			dobj.setLayout(null);
-			dobj.setVisible(true);
+		dobj.add(dlobj);
+		dobj.add(ddelete);
+		dobj.add(ddboj);
+		dobj.add(notify);
+		dobj.add(close);
+		dobj.setSize(400,370);
+		dobj.setLayout(null);
+		dobj.setVisible(true);
 
 		
-			close.addActionListener(new ActionListener()
+		close.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				public void actionPerformed(ActionEvent e)
-				{
-					dobj.dispose();
-				}	
-			});
+				dobj.dispose();
+			}	
+		});
 
 		
-			ddboj.addActionListener(new ActionListener()
+		ddboj.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				public void actionPerformed(ActionEvent e)
+				String nameToDelete = ddelete.getText();
+				if(nameToDelete.isEmpty())
 				{
-					String nameToDelete = ddelete.getText();
-					if(nameToDelete.isEmpty())
+					notify.setText("No data provided\n");
+					notify.append("Please enter the site name to delete\n");
+				}
+				else
+				{
+					boolean foundAndDeleted = deleteCredentials(nameToDelete);
+					if(foundAndDeleted == true)
 					{
-						notify.setText("No data provided\n");
-						notify.append("Please enter the site name to delete\n");
+						notify.setText("Successfully deleted.");
 					}
 					else
 					{
-						boolean foundAndDeleted = deleteCredentials(nameToDelete);
-						if(foundAndDeleted == true)
-						{
-							notify.setText("Successfully deleted.");
-						}
-						else
-						{
-							notify.setText("No such website found.");
-						}
+						notify.setText("No such website found.");
 					}
 				}
+			}
 				
-			});
+		});
 			
 	}
 	
@@ -244,81 +244,81 @@ class WebsiteCredentialManager
 	*/
 	private void searchCredentials() 
 	{
-			JFrame sobj=new JFrame("Search Website");
-			JLabel slobj=new JLabel("Enter the Website");
-			JTextField search=new JTextField();
-			JButton bboj=new JButton("SEARCH");
-			JButton close=new JButton("CLOSE");
-			JTextArea found1=new JTextArea();
+		JFrame sobj=new JFrame("Search Website");
+		JLabel slobj=new JLabel("Enter the Website");
+		JTextField search=new JTextField();
+		JButton bboj=new JButton("SEARCH");
+		JButton close=new JButton("CLOSE");
+		JTextArea found1=new JTextArea();
 			
-			slobj.setBounds(20,60,120,30);
-			search.setBounds(130,60,210,30);
-			bboj.setBounds(130,125,90,30);
-			close.setBounds(130,275,90,30);
-			found1.setBounds(30,190,275,60);
-			sobj.add(slobj);
-			sobj.add(search);
-			sobj.add(bboj);
-			sobj.add(found1);
-			sobj.add(close);
-			sobj.setSize(370,380);
-			sobj.setLayout(null);
-			sobj.setVisible(true);
+		slobj.setBounds(20,60,120,30);
+		search.setBounds(130,60,210,30);
+		bboj.setBounds(130,125,90,30);
+		close.setBounds(130,275,90,30);
+		found1.setBounds(30,190,275,60);
+		sobj.add(slobj);
+		sobj.add(search);
+		sobj.add(bboj);
+		sobj.add(found1);
+		sobj.add(close);
+		sobj.setSize(370,380);
+		sobj.setLayout(null);
+		sobj.setVisible(true);
 			
-			close.addActionListener(new ActionListener()
+		close.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				public void actionPerformed(ActionEvent e)
+				sobj.dispose();
+			}
+		});
+			
+			
+		bboj.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				String name = search.getText();
+				if(name.isEmpty())
 				{
-					sobj.dispose();
+					found1.setText("No data provided\n");
+					found1.append("Please enter the site name to search\n");
 				}
-			});
-			
-			
-			bboj.addActionListener(new ActionListener() 
-			{
-				public void actionPerformed(ActionEvent e) 
-				{
-					String name = search.getText();
-					if(name.isEmpty())
-					{
-						found1.setText("No data provided\n");
-						found1.append("Please enter the site name to search\n");
-					}
 					
-					else
+				else
+				{
+						
+					try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt")))
 					{
-						
-						try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt")))
+						String line;
+						boolean found = false;
+						while ((line = reader.readLine()) != null) 
 						{
-							String line;
-							boolean found = false;
-							while ((line = reader.readLine()) != null) 
+							if (line.startsWith("Site name: " + name))
 							{
-								if (line.startsWith("Site name: " + name))
+								found1.setText(line + "\n");
+								for (int i = 0; i < 2; i++)
 								{
-									found1.setText(line + "\n");
-									for (int i = 0; i < 2; i++)
-									{
-										line = reader.readLine();
-										found1.append(line + "\n");
-									}
-									found = true;
-									break;
+									line = reader.readLine();
+									found1.append(line + "\n");
 								}
-							}
-							if (found == false)
-							{
-								found1.setText("No such website added.");
+								found = true;
+								break;
 							}
 						}
-						catch (IOException obj)
+						if (found == false)
 						{
-							System.out.println("Exception occured : "+obj);
+							found1.setText("No such website added.");
 						}
-						
 					}
+					catch (IOException obj)
+					{
+						System.out.println("Exception occured : "+obj);
+					}
+						
 				}
-			});
+			}
+		});
 	}
 	
 	
@@ -347,60 +347,60 @@ class WebsiteCredentialManager
 	*/
    	 private void addCredentials()
 	{
-			JFrame afobj=new JFrame("Adding a new website");
-			JLabel alobj1=new JLabel("Enter website name");
-			JLabel alobj2=new JLabel("Enter username");
-			JLabel alobj3=new JLabel("Enter password");
-			JButton abobj=new JButton("SAVE");
-			JButton close=new JButton("CLOSE");
-			JTextField website=new JTextField();
-			JTextField username=new JTextField();
-			JTextField password=new JTextField();
+		JFrame afobj=new JFrame("Adding a new website");
+		JLabel alobj1=new JLabel("Enter website name");
+		JLabel alobj2=new JLabel("Enter username");
+		JLabel alobj3=new JLabel("Enter password");
+		JButton abobj=new JButton("SAVE");
+		JButton close=new JButton("CLOSE");
+		JTextField website=new JTextField();
+		JTextField username=new JTextField();
+		JTextField password=new JTextField();
 			
-			alobj1.setBounds(20,50,130,30);
-			website.setBounds(150,50,180,25);
+		alobj1.setBounds(20,50,130,30);
+		website.setBounds(150,50,180,25);
 					
-			alobj2.setBounds(20,100,130,30);
-			username.setBounds(150,100,180,25);
+		alobj2.setBounds(20,100,130,30);
+		username.setBounds(150,100,180,25);
 			
-			alobj3.setBounds(20,150,130,30);
-			password.setBounds(150,150,180,25);
+		alobj3.setBounds(20,150,130,30);
+		password.setBounds(150,150,180,25);
 					
-			abobj.setBounds(70,215,90,30);
-			close.setBounds(210,215,90,30);
+		abobj.setBounds(70,215,90,30);
+		close.setBounds(210,215,90,30);
 			
-			afobj.add(close);
-			afobj.add(alobj1);
-			afobj.add(website);
-			afobj.add(alobj2);
-			afobj.add(username);
-			afobj.add(alobj3);
-			afobj.add(password);
-			afobj.add(abobj);
-			afobj.setSize(380,310);
-			afobj.setLayout(null);
-			afobj.setVisible(true);
+		afobj.add(close);
+		afobj.add(alobj1);
+		afobj.add(website);
+		afobj.add(alobj2);
+		afobj.add(username);
+		afobj.add(alobj3);
+		afobj.add(password);
+		afobj.add(abobj);
+		afobj.setSize(380,310);
+		afobj.setLayout(null);
+		afobj.setVisible(true);
 			
-			close.addActionListener(new ActionListener()
+		close.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				public void actionPerformed(ActionEvent e)
-				{
-					afobj.dispose();
-				}
-			});
+				afobj.dispose();
+			}
+		});
 			
-			abobj.addActionListener(new ActionListener() 
+		abobj.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
 			{
-				public void actionPerformed(ActionEvent e) 
-				{
-					String name = website.getText();
-					String usernameSet = username.getText();
-					String passwordSet = password.getText();
+				String name = website.getText();
+				String usernameSet = username.getText();
+				String passwordSet = password.getText();
 
-					saveCredentials(name, usernameSet, passwordSet);
-					afobj.dispose();
-				}
-     		        });
+				saveCredentials(name, usernameSet, passwordSet);
+				afobj.dispose();
+			}
+     	        });
 	}
 	
 	
