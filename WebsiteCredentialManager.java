@@ -4,23 +4,19 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.Desktop;
 
-
-
 class WebsiteListener extends WindowAdapter
 {
 	public void windowClosing(WindowEvent e)
 	{
 		System.exit(0);
-	}
-	
+	}	
 }
-
 
 
 class WebsiteCredentialManager 
 {
 	
-	 public WebsiteCredentialManager()   // constructor -> used in the creation of the main frame 
+	public WebsiteCredentialManager()   // constructor -> used in the creation of the main frame 
 	 {
 		JFrame fobj=new JFrame("Website Info Manager");
 		JLabel lobj=new JLabel("Select  your  option");
@@ -58,42 +54,47 @@ class WebsiteCredentialManager
 		fobj.setLayout(null);
 		fobj.setVisible(true);
 		fobj.addWindowListener(new WebsiteListener());		
-		
+
+		 
 		bobj5.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-					fobj.dispose();
+				fobj.dispose();
 			}
 		});
-		
+
+
 		// add function
 		bobj1.addActionListener(new ActionListener()
 		{
-            public void actionPerformed(ActionEvent e) 
+            		public void actionPerformed(ActionEvent e) 
 			{
-                addCredentials();
-            }
-        });
-		
+               			addCredentials();
+            		}
+        	});
+
+
 		// open function
 		bobj3.addActionListener(new ActionListener()
 		{
-            public void actionPerformed(ActionEvent e) 
+            		public void actionPerformed(ActionEvent e) 
 			{
-                openFile();
-            }
-        });
-		
+                		openFile();
+            		}
+        	});
+
+		 
 		// search Credentials
 		bobj2.addActionListener(new ActionListener() 
 		{
-            public void actionPerformed(ActionEvent e) 
+            		public void actionPerformed(ActionEvent e) 
 			{
-                searchCredentials();
-            }
-        });
-		
+                		searchCredentials();
+            		}
+        	});
+
+		 
 		// delete wesite
 		bobj4.addActionListener(new ActionListener()
 		{
@@ -103,17 +104,19 @@ class WebsiteCredentialManager
 			}
 			
 		});
-		
+
+		 
 }  //  end of constructor
 
 
+	
 	/*
-	  the deleteweb() function deletes the website name given by the user 
-	  from the credentials.txt file .
-	  if the website is not present in the file then it will show a message in 
-	  the textArea filed that there is no such website present.
-	  And if present the will delete the website from the file and it will show 
-	  that the Credentials are delete..
+	 the deleteweb() function deletes the website name given by the user 
+	 from the credentials.txt file .
+	 if the website is not present in the file then it will show a message in 
+	 the textArea filed that there is no such website present.
+	 And if present the will delete the website from the file and it will show 
+	 that the Credentials are delete..
 	*/
 
 	private void deleteweb()        
@@ -140,7 +143,8 @@ class WebsiteCredentialManager
 			dobj.setSize(400,370);
 			dobj.setLayout(null);
 			dobj.setVisible(true);
-			
+
+		
 			close.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -148,7 +152,8 @@ class WebsiteCredentialManager
 					dobj.dispose();
 				}	
 			});
-			
+
+		
 			ddboj.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -180,7 +185,7 @@ class WebsiteCredentialManager
 		private boolean deleteCredentials(String websiteName)
 		{
 			boolean found = false;
-			List <String> allLines = new ArrayList<String> ();
+			ArrayList <String> allLines = new ArrayList<String> ();
 
 			try(BufferedReader reader = new BufferedReader(new FileReader("credentials.txt")))
 			{
@@ -212,18 +217,18 @@ class WebsiteCredentialManager
         }
 
         if(found == true)
-		{
+	{
             try (BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt")))
-			{
+	    {
                 for (String line : allLines)
-				{
+		{
                     writer.write(line + "\n");
                 }
                 writer.flush();
             } 
-			catch (IOException e)
-			{
-				System.out.println("Exception occured : "+e);
+	    catch (IOException e)
+	    {
+		System.out.println("Exception occured : "+e);
             }
         }
 
@@ -324,15 +329,15 @@ class WebsiteCredentialManager
 	*/
 	private void openFile() 
 	{
-        try
+        	try
 		{
-            Desktop.getDesktop().open(new File("credentials.txt"));
-        } 
+            		Desktop.getDesktop().open(new File("credentials.txt"));
+        	} 
 		catch (IOException e)
 		{
-            System.out.println("Exception occured : "+e);
-        }
-    }
+            		System.out.println("Exception occured : "+e);
+        	}
+    	}
 
 
 
@@ -340,7 +345,7 @@ class WebsiteCredentialManager
 		this function is used to add the websiteName , username , and password
 		into the credentials.txt file 
 	*/
-    private void addCredentials()
+   	 private void addCredentials()
 	{
 			JFrame afobj=new JFrame("Adding a new website");
 			JLabel alobj1=new JLabel("Enter website name");
@@ -395,25 +400,25 @@ class WebsiteCredentialManager
 					saveCredentials(name, usernameSet, passwordSet);
 					afobj.dispose();
 				}
-        });
+     		        });
 	}
 	
 	
 	private void saveCredentials(String name, String username, String password) 
 	{
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt", true)))
+       		 try(BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt", true)))
 		{
-            writer.write("Site name: " + name + "\n");
-            writer.write("Username: " + username + "\n");
-            writer.write("Password: " + password + "\n");
-            writer.write("\n");
-            writer.flush();
-        } 
+           		writer.write("Site name: " + name + "\n");
+         		writer.write("Username: " + username + "\n");
+         		writer.write("Password: " + password + "\n");
+           	 	writer.write("\n");
+            		writer.flush();
+        	} 
 		catch (IOException e) 
 		{
 			System.out.println("Exception occured : "+e);
-        }
-    }
+        	}
+    	}
 
 
 
@@ -422,6 +427,6 @@ class WebsiteCredentialManager
 	*/
 	public static void main(String[] args) 
 	{
-        WebsiteCredentialManager app = new WebsiteCredentialManager();
-    }
+        	WebsiteCredentialManager app = new WebsiteCredentialManager();
+    	}
 }
