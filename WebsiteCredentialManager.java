@@ -115,10 +115,9 @@ class WebsiteCredentialManager
 	 from the credentials.txt file .
 	 if the website is not present in the file then it will show a message in 
 	 the textArea filed that there is no such website present.
-	 And if present the will delete the website from the file and it will show 
-	 that the Credentials are delete..
+	 And if it is present then it will delete the website from the file and it
+  	 will show that the message that sucessfully deleted 
 	*/
-
 	private void deleteweb()        
 	{
 		JFrame dobj=new JFrame("Delete a Website");
@@ -423,7 +422,8 @@ class WebsiteCredentialManager
 
 
 	/*
-		main starter function creates the object of the class
+		the main entry function which is used in order to create the object 
+  		of the class
 	*/
 	public static void main(String[] args) 
 	{
