@@ -13,7 +13,7 @@
 3. The main window of the application features five buttons:
    "ADD"     -> to add the information of new website.
    "SEARCH"  -> to get the username and password of the already saved information.
-   "Open"    -> to open the main file "credentials.txt".
+   "OPEN"    -> to open the main file "credentials.txt".
    "DELETE"  -> to delete the information.
    "CLOSE"   -> to terminate the application.
 
