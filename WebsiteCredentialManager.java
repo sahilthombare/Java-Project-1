@@ -209,31 +209,31 @@ class WebsiteCredentialManager
 					{
 						isInfoFound = false;
 					}
-            }
-        } 
-		catch(IOException e)
-		{
-			System.out.println("Exception occured : "+e);
-        }
+            			}
+       			 } 
+			catch(IOException e)
+			{
+				System.out.println("Exception occured : "+e);
+       			 }
 
-        if(found == true)
-	{
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt")))
-	    {
-                for (String line : allLines)
-		{
-                    writer.write(line + "\n");
-                }
-                writer.flush();
-            } 
-	    catch (IOException e)
-	    {
-		System.out.println("Exception occured : "+e);
-            }
-        }
+        		if(found == true)
+			{
+            			try (BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt")))
+	    			{
+               				 for (String line : allLines)
+					 {
+                    				writer.write(line + "\n");
+                			 }
+               				 writer.flush();
+            			} 
+	    			catch (IOException e)
+	   			{
+					System.out.println("Exception occured : "+e);
+            			}
+        		}
 
-        return found;
-    }
+       			 return found;
+    		}
 					
 
 	/*
