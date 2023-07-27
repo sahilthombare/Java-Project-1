@@ -256,8 +256,8 @@ class WebsiteCredentialManager
 		slobj.setBounds(20,60,200,30);
 		search.setBounds(230,60,200,30);
 		bboj.setBounds(160,140,90,30);
-		found1.setBounds(80,220,275,70);
-		close.setBounds(160,335,90,30);
+		found1.setBounds(80,220,275,90);
+		close.setBounds(160,350,100,30);
 			
 		sobj.add(slobj);
 		sobj.add(search);
@@ -300,10 +300,12 @@ class WebsiteCredentialManager
 							if (line.startsWith("Site name: " + name))
 							{
 								found1.setText(line + "\n");
+								found1.append("\n");
 								for (int i = 0; i < 2; i++)
 								{
 									line = reader.readLine();
 									found1.append(line + "\n");
+									found1.append("\n");
 								}
 								found = true;
 								break;
