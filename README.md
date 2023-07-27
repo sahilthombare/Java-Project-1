@@ -19,8 +19,10 @@
    "CLOSE"   -> to terminate the application.
 
 4. After any of the above button is pressed a new window opens for the action to be performed.
- 
-5. With an intuitive interface, this project offers efficient storage and retrieval of
+
+5. Also there is a feature that creates the password.
+  
+6. With an intuitive interface, this project offers efficient storage and retrieval of
    website information, enhancing user convenience and security.
    
 
