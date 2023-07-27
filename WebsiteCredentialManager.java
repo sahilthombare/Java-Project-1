@@ -1,4 +1,5 @@
 import java.awt.event.*;
+import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 import java.util.*;
@@ -18,6 +19,7 @@ class WebsiteCredentialManager
 	
 	public WebsiteCredentialManager()   // constructor -> used in the creation of the main frame 
 	 {
+	   
 		JFrame fobj=new JFrame("Website Info Manager");
 		JLabel lobj=new JLabel("Select  your  option");
 		JButton bobj1=new JButton("ADD");
@@ -30,16 +32,16 @@ class WebsiteCredentialManager
 		JLabel lobj3=new JLabel("Open  the  file");
 		JLabel lobj4=new JLabel("Delete  the  existing  info");
 	
-		lobj.setBounds(95,50,160,40);
-		lobj1.setBounds(20,110,160,30);
-		bobj1.setBounds(190,110,90,30);
-		lobj2.setBounds(20,160,160,30);
-		bobj2.setBounds(190,160,90,30);
-		lobj3.setBounds(20,210,160,30);
-		bobj3.setBounds(190,210,90,30);
-		lobj4.setBounds(20,260,160,30);
-		bobj4.setBounds(190,260,90,30);
-		bobj5.setBounds(110,320,90,30);
+		lobj.setBounds(120,45,160,40);
+		lobj1.setBounds(20,130,190,30);
+		bobj1.setBounds(240,130,90,30);
+		lobj2.setBounds(20,190,190,30);
+		bobj2.setBounds(240,190,90,30);
+		lobj3.setBounds(20,250,190,30);
+		bobj3.setBounds(240,250,90,30);
+		lobj4.setBounds(20,310,190,30);
+		bobj4.setBounds(240,310,90,30);
+		bobj5.setBounds(140,390,90,30);
 		fobj.add(lobj);
 		fobj.add(lobj1);
 		fobj.add(bobj1);
@@ -50,7 +52,7 @@ class WebsiteCredentialManager
 		fobj.add(lobj4);
 		fobj.add(bobj4);
 		fobj.add(bobj5);
-		fobj.setSize(320,410);
+		fobj.setSize(385,490);
 		fobj.setLayout(null);
 		fobj.setVisible(true);
 		fobj.addWindowListener(new WebsiteListener());		
@@ -60,7 +62,7 @@ class WebsiteCredentialManager
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				fobj.dispose();
+				System.exit(0);
 			}
 		});
 
@@ -68,31 +70,31 @@ class WebsiteCredentialManager
 		// add function
 		bobj1.addActionListener(new ActionListener()
 		{
-            		public void actionPerformed(ActionEvent e) 
+            public void actionPerformed(ActionEvent e) 
 			{
-               			addCredentials();
-            		}
-        	});
+               	addCredentials();
+           	}
+        });
 
 
 		// open function
 		bobj3.addActionListener(new ActionListener()
 		{
-            		public void actionPerformed(ActionEvent e) 
+            public void actionPerformed(ActionEvent e) 
 			{
-                		openFile();
-            		}
-        	});
+            	openFile();
+           	}
+        });
 
 		 
 		// search Credentials
 		bobj2.addActionListener(new ActionListener() 
 		{
-            		public void actionPerformed(ActionEvent e) 
+            public void actionPerformed(ActionEvent e) 
 			{
-                		searchCredentials();
-            		}
-        	});
+            	searchCredentials();
+          	}
+        });
 
 		 
 		// delete wesite
@@ -115,31 +117,32 @@ class WebsiteCredentialManager
 	 from the credentials.txt file .
 	 if the website is not present in the file then it will show a message in 
 	 the textArea filed that there is no such website present.
-	 And if it is present then it will delete the website from the file and it
-  	 will show that the message that sucessfully deleted 
+	 And if present the will delete the website from the file and it will show 
+	 that the Credentials are delete..
 	*/
+
 	private void deleteweb()        
 	{
 		JFrame dobj=new JFrame("Delete a Website");
-		JLabel dlobj=new JLabel("Enter the Website to Delete");
+		JLabel dlobj=new JLabel("Enter  the  Website  to  Delete");
 		JTextField ddelete=new JTextField();
 		JButton ddboj=new JButton("DELETE");
 		JButton close=new JButton("CLOSE");
 			
 		JTextArea notify=new JTextArea();
 			
-		dlobj.setBounds(20,50,170,30);
-		ddelete.setBounds(200,50,170,30);
-		ddboj.setBounds(150,120,80,30);
-		notify.setBounds(100,190,200,50);
-		close.setBounds(150,275,80,30);
+		dlobj.setBounds(20,50,200,30);
+		ddelete.setBounds(230,50,200,30);
+		ddboj.setBounds(175,130,80,30);
+		notify.setBounds(110,210,220,60);
+		close.setBounds(175,320,80,30);
 			
 		dobj.add(dlobj);
 		dobj.add(ddelete);
 		dobj.add(ddboj);
 		dobj.add(notify);
 		dobj.add(close);
-		dobj.setSize(400,370);
+		dobj.setSize(480,430);
 		dobj.setLayout(null);
 		dobj.setVisible(true);
 
@@ -213,7 +216,7 @@ class WebsiteCredentialManager
 			catch(IOException e)
 			{
 				System.out.println("Exception occured : "+e);
-       			 }
+       			}
 
         		if(found == true)
 			{
@@ -221,12 +224,12 @@ class WebsiteCredentialManager
 	    			{
                				 for (String line : allLines)
 					 {
-                    				writer.write(line + "\n");
+                   				writer.write(line + "\n");
                 			 }
-               				 writer.flush();
+               			 	writer.flush();
             			} 
 	    			catch (IOException obj)
-	   			{
+				{
 					System.out.println("Exception occured : "+obj);
             			}
         		}
@@ -244,23 +247,24 @@ class WebsiteCredentialManager
 	private void searchCredentials() 
 	{
 		JFrame sobj=new JFrame("Search Website");
-		JLabel slobj=new JLabel("Enter the Website");
+		JLabel slobj=new JLabel("Enter  the  Website  To  Search");
 		JTextField search=new JTextField();
 		JButton bboj=new JButton("SEARCH");
 		JButton close=new JButton("CLOSE");
 		JTextArea found1=new JTextArea();
 			
-		slobj.setBounds(20,60,120,30);
-		search.setBounds(130,60,210,30);
-		bboj.setBounds(130,125,90,30);
-		close.setBounds(130,275,90,30);
-		found1.setBounds(30,190,275,60);
+		slobj.setBounds(20,60,200,30);
+		search.setBounds(230,60,200,30);
+		bboj.setBounds(160,140,90,30);
+		found1.setBounds(80,220,275,70);
+		close.setBounds(160,335,90,30);
+			
 		sobj.add(slobj);
 		sobj.add(search);
 		sobj.add(bboj);
 		sobj.add(found1);
 		sobj.add(close);
-		sobj.setSize(370,380);
+		sobj.setSize(470,440);
 		sobj.setLayout(null);
 		sobj.setVisible(true);
 			
@@ -352,22 +356,27 @@ class WebsiteCredentialManager
 		JLabel alobj3=new JLabel("Enter password");
 		JButton abobj=new JButton("SAVE");
 		JButton close=new JButton("CLOSE");
+		JButton suggest=new JButton("SUGGEST ?");
+			
 		JTextField website=new JTextField();
 		JTextField username=new JTextField();
-		JTextField password=new JTextField();
+		JTextArea password=new JTextArea();
 			
-		alobj1.setBounds(20,50,130,30);
-		website.setBounds(150,50,180,25);
+		alobj1.setBounds(20,50,200,30);
+		website.setBounds(220,50,200,25);
 					
-		alobj2.setBounds(20,100,130,30);
-		username.setBounds(150,100,180,25);
+		alobj2.setBounds(20,110,200,30);
+		username.setBounds(220,110,200,25);
 			
-		alobj3.setBounds(20,150,130,30);
-		password.setBounds(150,150,180,25);
+		alobj3.setBounds(20,170,200,30);
+		password.setBounds(220,170,200,25);
 					
-		abobj.setBounds(70,215,90,30);
-		close.setBounds(210,215,90,30);
+		suggest.setBounds(25,217,100,25);		
+					
+		abobj.setBounds(90,300,90,30);
+		close.setBounds(230,300,90,30);
 			
+		afobj.add(suggest);
 		afobj.add(close);
 		afobj.add(alobj1);
 		afobj.add(website);
@@ -376,7 +385,7 @@ class WebsiteCredentialManager
 		afobj.add(alobj3);
 		afobj.add(password);
 		afobj.add(abobj);
-		afobj.setSize(380,310);
+		afobj.setSize(470,400);
 		afobj.setLayout(null);
 		afobj.setVisible(true);
 			
@@ -388,30 +397,156 @@ class WebsiteCredentialManager
 			}
 		});
 			
-		abobj.addActionListener(new ActionListener() 
+		suggest.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
-				String name = website.getText();
-				String usernameSet = username.getText();
-				String passwordSet = password.getText();
-
-				saveCredentials(name, usernameSet, passwordSet);
-				afobj.dispose();
+				String new_name=website.getText();
+		
+				JFrame zobj= new JFrame("Password");
+				JLabel z1obj=new JLabel("Enter  your  name");
+				JTextField name=new JTextField();
+					
+				JLabel z2obj=new JLabel("Your  Website  name  is");
+				JTextArea site_name=new JTextArea(new_name);
+					
+				JLabel z3obj=new JLabel("Enter  1  special  symbol  eg: / * ! @ # $");
+				JTextField symbol=new JTextField();
+					
+				JLabel z4obj=new JLabel("Enter  3  digit  number");
+				JTextField number=new JTextField();
+					
+				JLabel password1=new JLabel("PASSWORD  IS  :");
+				JTextArea ans=new JTextArea();
+					
+				JButton generate=new JButton("GENERATE");
+				JButton copy=new JButton("COPY");
+				JButton ignore=new JButton("IGNORE");
+					
+				z1obj.setBounds(20,40,230,30);
+				name.setBounds(250,40,200,30);
+					
+				z2obj.setBounds(20,90,230,30);
+				site_name.setBounds(250,90,200,30);
+					
+				z3obj.setBounds(20,140,230,30);
+				symbol.setBounds(250,140,200,30);
+					
+				z4obj.setBounds(20,190,230,30);
+				number.setBounds(250,190,200,30);
+					
+				generate.setBounds(170,250,100,30);
+				
+				password1.setBounds(60,300,200,30);
+				ans.setBounds(230,300,200,30);
+					
+				copy.setBounds(90,360,70,30);
+			
+				ignore.setBounds(280,360,80,30);
+					
+				zobj.add(generate);
+				zobj.add(z1obj);
+				zobj.add(name);
+				zobj.add(z2obj);
+				zobj.add(site_name);
+				zobj.add(z3obj);
+				zobj.add(symbol);
+				zobj.add(z4obj);
+				zobj.add(number);
+				zobj.add(password1);
+				zobj.add(ans);
+				zobj.add(copy);
+				zobj.add(ignore);
+				zobj.setSize(500,450);
+				zobj.setLayout(null);
+				zobj.setVisible(true);
+					
+				generate.addActionListener(new ActionListener ()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						
+						String str1=name.getText();
+						String str2=site_name.getText();
+						String str3=symbol.getText();
+						String temp=number.getText();
+						int ori_number=Integer.parseInt(temp);
+						String second;
+						String first_letter=str1.substring(0,1);
+						first_letter=first_letter.toUpperCase();
+						second=str1.substring(1,2);
+						second=second.toLowerCase();
+						first_letter=first_letter+second;
+								
+						str2=str2.substring(0,3);
+						str2=str2.toLowerCase();
+						first_letter=first_letter+str2;
+						first_letter=first_letter+str3;
+						int new_number=ori_number;
+						int reverse=0;
+						int no;
+						while(new_number != 0)
+						{
+							no=new_number%10;
+							reverse=reverse*10+no;
+							new_number=new_number/10;
+						}
+						reverse=reverse+ori_number;
+						int or=ori_number | reverse;
+						or= or << 2;
+						or= or | ori_number;
+						first_letter=first_letter+or;								
+						ans.setText(first_letter);
+							
+					}
+				});
+					
+				copy.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						String add=ans.getText();
+						password.setText(add);
+						zobj.dispose();
+					}
+				});
+					
+				ignore.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						zobj.dispose();
+					}
+				});
+					
+					
 			}
-     	        });
+		});
+			
+			abobj.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent e) 
+				{
+					String name = website.getText();
+					String usernameSet = username.getText();
+					String passwordSet = password.getText();
+
+					saveCredentials(name, usernameSet, passwordSet);
+					afobj.dispose();
+				}
+     		});
 	}
 	
 	
 	private void saveCredentials(String name, String username, String password) 
 	{
-       		 try(BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt", true)))
+       		try(BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt", true)))
 		{
-           		writer.write("Site name: " + name + "\n");
-         		writer.write("Username: " + username + "\n");
+        	   	writer.write("Site name: " + name + "\n");
+        		writer.write("Username: " + username + "\n");
          		writer.write("Password: " + password + "\n");
            	 	writer.write("\n");
-            		writer.flush();
+           	 	writer.flush();
         	} 
 		catch (IOException obj) 
 		{
@@ -422,11 +557,10 @@ class WebsiteCredentialManager
 
 
 	/*
-		the main entry function which is used in order to create the object 
-  		of the class
+		main starter function creates the object of the class
 	*/
 	public static void main(String[] args) 
 	{
-        	WebsiteCredentialManager app = new WebsiteCredentialManager();
+		WebsiteCredentialManager app = new WebsiteCredentialManager();
     	}
 }
