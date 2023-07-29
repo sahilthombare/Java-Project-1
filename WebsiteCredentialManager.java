@@ -19,7 +19,7 @@ class WebsiteListener extends WindowAdapter
 class GUI
 {
 	
-	public GUI()   // constructor -> used in the creation of the main frame 
+	public GUI() 
 	 {
 	   
 		JFrame fobj=new JFrame("Website Info Manager");
@@ -68,38 +68,34 @@ class GUI
 			}
 		});
 
-
-		// add function
+		 
 		bobj1.addActionListener(new ActionListener()
 		{
-            public void actionPerformed(ActionEvent e) 
+            		public void actionPerformed(ActionEvent e) 
 			{
-               	addCredentials();
-           	}
-        });
+               			addCredentials();
+           		}
+        	});
 
 
-		// open function
 		bobj3.addActionListener(new ActionListener()
 		{
-            public void actionPerformed(ActionEvent e) 
+          		public void actionPerformed(ActionEvent e) 
 			{
-            	openFile();
-           	}
-        });
+            			openFile();
+           		}
+        	});
 
 		 
-		// search Credentials
 		bobj2.addActionListener(new ActionListener() 
 		{
-            public void actionPerformed(ActionEvent e) 
+            		public void actionPerformed(ActionEvent e) 
 			{
-            	searchCredentials();
-          	}
-        });
+            			searchCredentials();
+          		}
+        	});
 
 		 
-		// delete wesite
 		bobj4.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -110,21 +106,11 @@ class GUI
 		});
 
 		 
-}  //  end of constructor
+} 
 
 
-	
-	/*
-	 the deleteweb() function deletes the website name given by the user 
-	 from the credentials.txt file .
-	 if the website is not present in the file then it will show a message in 
-	 the textArea filed that there is no such website present.
-	 And if present the will delete the website from the file and it will show 
-	 that the Credentials are delete..
-	*/
-
-	private void deleteweb()        
-	{
+		private void deleteweb()        
+		{
 			JFrame dobj=new JFrame("Delete a Website");
 			JLabel dlobj=new JLabel("Enter  the  Website  to  Delete");
 			JTextField ddelete=new JTextField();
@@ -187,23 +173,15 @@ class GUI
 				
 			});
 			
-	}
+		}
 	
 		private boolean deleteCredentials(String websiteName)
 		{
-			boolean found = false;  // found variable initially set as false
+			boolean found = false; 
 			ArrayList <String> allLines = new ArrayList<String> ();
-			/*
-				the data which is not to be deleted will be written in this datastructure.
-			*/
-
+			
 			try
 			{
-				/*
-					FileReader used for opening the already created file or if not then 
-					creating a new file named "credentials.txt" in the reading mode
-					The BufferedReader is used for reading from the file.
-				*/
 				FileReader fobj = new FileReader("credentials.txt");
 				BufferedReader reader = new BufferedReader(fobj);
 				
@@ -215,70 +193,50 @@ class GUI
 					if((isInfoFound == false) && line.startsWith("Site name: " + websiteName))
 					{
 						isInfoFound = true;
-						found = true; // if website found then the found variable is set true
+						found = true; 
 					}
 
 					if(isInfoFound == false)
 					{
-						allLines.add(line); // adding lines in the arraylist if and only 
-											//isInfoFound variable is false (data that is not
-					}						// to be deleted)
+						allLines.add(line); 						
+					}						
 
 
 					if((isInfoFound && line.isEmpty()) == true)
-					{						//if the isInfoFound variable is true and line 
-						isInfoFound = false;//is empty that means we have sucessfully travelled
-					}						//the part of the data from the file which is to
-           		}							// be deleted them the isInfoFound variable is set true
-       		} 
+					{						
+						isInfoFound = false;
+					}						
+           			}							
+       			} 
 			catch(IOException e)
 			{
 				System.out.println("Exception occured : "+e);
-       		}
-
-				/*
-					if the found variable is false that means there was no such website in the file and 
-					thus will return false but if it is made true in the while loop that means the data was 
-					present.
-					the data which is not to be deleted is in the arraylist now is copied back to the 
-					"credentials.txt" file which still has the part of the data that is to be deleted
-					but as there is no second parameter "true" mentioned while creating the object of the
-					FileWriter the previous data will be overridden by the new data.
-					thus we are getting back the data which was not to be deleted.
-				*/
+       			}
 				
         		if(found == true)
-				{
-            		try
-	    			{
-						
-						FileWriter fobj1 = new FileWriter("credentials.txt");
-						BufferedWriter writer = new BufferedWriter(fobj1);
-						
-               			 for (String line : allLines) 
-						 {
-                   			writer.write(line + "\n");
-                		 }
-               			 writer.flush();  //  emptying the buffer
-						 allLines.clear(); // clearing all the data from the arraylist
-						 
-            		} 
-	    			catch(IOException obj)
+			{
+            			try
+	    			{	
+					FileWriter fobj1 = new FileWriter("credentials.txt");
+					BufferedWriter writer = new BufferedWriter(fobj1);	
+               				for (String line : allLines) 
 					{
-						System.out.println("Exception occured : "+obj);
-            		}
+                   				writer.write(line + "\n");
+                		 	}
+               				 writer.flush(); 
+					allLines.clear(); 
+						 
+            			} 
+	    			catch(IOException obj)
+				{
+					System.out.println("Exception occured : "+obj);
+            			}
         		}
 
        			 return found;
     		}
-					
 
-		/*
-			this function searches the username and the password for the website name 
-			given by the user in the credentials.txt file
-			if there is some website specified by the user then it will show the details
-			if not then it will show no such website added
-		*/
+	
 		private void searchCredentials() 
 		{
 			JFrame sobj=new JFrame("Search Website");
@@ -295,7 +253,6 @@ class GUI
 			found1.setBounds(80,220,275,90);
 			go.setBounds(380,255,60,25);
 			close.setBounds(160,350,100,30);
-			
 			
 			sobj.add(go);
 			sobj.add(slobj);
@@ -371,12 +328,9 @@ class GUI
 										String op="www."+name;
 										try
 										{
-											URI uri = new URI(op);           //Desktop class is used to interact with the  
-											Desktop.getDesktop().browse(uri);//default applications such as opening a URI in the default web 
+											URI uri = new URI(op);          
+											Desktop.getDesktop().browse(uri); 
 										}
-										// browser.  The browse() method of the Desktop class is used to open a specified URI.
-										// URI is uniform resource identifier
-										// Desktop.getDesktop().browse() method to open the URI in the default web browser.
 										catch(Exception eobj)
 										{
 											System.out.println("Exception occured : "+eobj);
@@ -397,31 +351,20 @@ class GUI
 			
 		}
 	
-	
-	
-		/*
-			this function is used to open the credentials.txt file just for the 
-			purpose of seeing the hard-copy of the file in the text format
-		*/
 		private void openFile() 
 		{
-        	try
+        		try
 			{	
 				File obj = new File("credentials.txt");
 				Desktop.getDesktop().open(obj);		
-        	} 
+        		} 
 			catch (IOException obj)
 			{
-            	System.out.println("Exception occured : "+obj);
-        	}
-    	}
+            			System.out.println("Exception occured : "+obj);
+        		}
+    		}
 
-
-
-		/*
-			this function is used to add the websiteName , username , and password
-			into the credentials.txt file 
-		*/
+	
 		private void addCredentials()
 		{
 			JFrame afobj=new JFrame("Adding a new website");
@@ -541,7 +484,6 @@ class GUI
 					{
 						public void actionPerformed(ActionEvent e)
 						{
-							
 							String str1=name.getText();
 							String str2=site_name.getText();
 							String str3=symbol.getText();
@@ -610,46 +552,31 @@ class GUI
 					saveCredentials(name, usernameSet, passwordSet);
 					afobj.dispose();
 				}
-     		});
-		}
+     			});
+	}
 	
-	/*
-		this function takes the input as websitename , username and password given by the
-		user . By creating the object of the FileWriter we are opening the file
-		"credentials.txt" file in the write mode and by mentioning true we are specifying 
-		that the origianl data should remain as it and the new data must be appended after
-		the previous data i.e by writing true the previous data will not be overridden by 
-		the new data. if there was no such file as "credentials.txt" previously made then the
-		FileWriter will ceate a file named "credentials.txt" and then the writing stuf will be done
-		and if there is a file named "credentials.txt" already made then the contents will be written
-		By creating the object of the of the class BufferedWriter we are able
-		to write in the file.
-		flush() -> is responsile for cleaning/ emptying the buffer after writing into the file.
-	*/
-		private void saveCredentials(String name, String username, String password) 
-		{
+	
+	private void saveCredentials(String name, String username, String password) 
+	{
        		try
-			{
-				FileWriter fobj = new FileWriter("credentials.txt",true);
-				BufferedWriter writer = new BufferedWriter(fobj);
+		{
+			FileWriter fobj = new FileWriter("credentials.txt",true);
+			BufferedWriter writer = new BufferedWriter(fobj);
            		writer.write("Site name: " + name + "\n");
          		writer.write("Username: " + username + "\n");
          		writer.write("Password: " + password + "\n");
            	 	writer.write("\n");
-            	writer.flush();
+            		writer.flush();
         	} 
-			catch(IOException obj) 
-			{
-				System.out.println("Exception occured : "+obj);
+		catch(IOException obj) 
+		{
+			System.out.println("Exception occured : "+obj);
         	}
     	}
 }
 
 public class WebsiteCredentialManager 
 {
-	/*
-		main entry point function creates the object of the class GUI
-	*/
 	public static void main(String[] args) 
 	{
 		GUI app = new GUI();
