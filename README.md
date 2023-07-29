@@ -20,9 +20,13 @@
 
 4. After any of the above button is pressed a new window opens for the action to be performed.
 
-5. Also there is a feature that creates the password.
+5. Also there is a feature that creates the password by using the suggest button if the suggest
+   button is pressed a strong and powerful password can be created.
+   
+6. There is also a go button in the search Website frame which is used to redirect to the website that
+   the user has entered.   
   
-6. With an intuitive interface, this project offers efficient storage and retrieval of
+7. With an intuitive interface, this project offers efficient storage and retrieval of
    website information, enhancing user convenience and security.
    
 
